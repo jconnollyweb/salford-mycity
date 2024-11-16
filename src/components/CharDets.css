@@ -1,0 +1,113 @@
+.charity-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto; /* Center the content */
+  background-color: #fff;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  overflow: hidden; /* Ensure no content overflows outside the rounded corners */
+}
+
+.charity-images {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px; 
+}
+
+.image-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 30%; 
+  
+}
+
+.thumbnail {
+  width: 200px; 
+  height: 200px;
+  margin-bottom: 15px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.featured-image {
+  width: 300px; 
+  max-width: 500px; 
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-left: 20px; 
+}
+
+.content {
+  width: 55%; 
+  margin-left: 20px;
+}
+
+.post-content {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.content p {
+  margin: 10px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.content a {
+  color: #0073e6;
+}
+
+.content a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .charity-details {
+    width: 90%;
+  }
+
+  .charity-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-gallery {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 0;
+  }
+
+  .thumbnail {
+    width: 80px;
+    height: 80px;
+  }
+
+  .featured-image {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .content {
+    width: 100%;
+    margin-left: 0;
+  }
+}
