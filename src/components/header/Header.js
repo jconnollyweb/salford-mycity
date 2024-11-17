@@ -23,8 +23,8 @@ const Header = () => {
         </div>
 
         <div className="auth-buttons">
-          <button className="login-btn">Login</button>
-          <button className="signup-btn">Sign Up</button>
+          <button> <Link to="/log-in" className="login-btn">Login</Link></button>
+          <button> <Link to="/sign-up" className="signup-btn">Sign up</Link></button>
         </div>
       </div>
 
