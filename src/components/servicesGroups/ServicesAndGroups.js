@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom"; 
 import "./Services.css";
 
 const ServicesAndGroups = () => {
-  // State to store fetched data
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch the data from the WordPress REST API
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,7 +26,7 @@ const ServicesAndGroups = () => {
     fetchData();
   }, []);
 
-  // Render the component
+
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: {error.message}</div>;
 
@@ -39,7 +38,7 @@ const ServicesAndGroups = () => {
           {data.map((item) => (
             <Link
               key={item.id}
-              to={'/charity-groups/'} // Link to Charities and Groups page
+              to={'/charity-groups/'} 
               className="card"
             >
               <h2 className="card-title">{item.title.rendered}</h2>

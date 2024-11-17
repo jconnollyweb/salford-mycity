@@ -1,6 +1,9 @@
 .childcare-container {
     text-align: center;
     padding: 20px;
+    font-family: "Lato", sans-serif;
+    width: 70%;
+    margin: auto;
   }
   
   .childcare-section {
@@ -24,10 +27,13 @@
     justify-content: center;
     gap: 15px;
   }
-  
+
+
   .link-card {
     flex: 1 1 calc(30% - 15px); /* Three cards per row */
     padding: 15px;
+    display: flex;
+    flex-direction: column;
     background-color: #f8f9fa;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -37,6 +43,11 @@
     font-size: 1em;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .link-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
   }
   
   .link-card:hover {

@@ -13,6 +13,7 @@ import Header from './components/header/Header';
 import SearchResults from './components/header/SearchResults';
 import Login from './components/authentication/Login';
 import SignUp from './components/authentication/SignUp';
+import Account from './components/authentication/Account';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/search-results" element={<SearchResults />} />
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/account" element={<Account />} />
 
       </Routes>
     </Router>
