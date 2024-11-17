@@ -47,6 +47,7 @@ body {
   .card {
     display: block;
     background-color: #f7f7f7;
+    width: 90%;
     border-radius: 8px;
     padding: 20px;
     text-align: center;
@@ -69,3 +70,15 @@ body {
     margin: 0;
   }
   
+  @media (max-width: 768px) { 
+
+    .card {
+      width: 95%;
+    }
+  }
+
+  @media (min-width: 480px) {
+    .card {
+      width: 95%;
+    }
+  }
