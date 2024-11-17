@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./Charity.css";
 
 const CharitiesAndGroups = () => {
   const [data, setData] = useState([]);
@@ -17,7 +18,6 @@ const CharitiesAndGroups = () => {
         );
         const result = await response.json();
 
-        // Extract unique postcodes
         const uniquePostcodes = [
           ...new Set(result.map((item) => item.acf.postcode)),
         ].filter(Boolean);
@@ -44,7 +44,6 @@ const CharitiesAndGroups = () => {
 
     setSelectedPostcodes(updatedSelectedPostcodes);
 
-    // Filter data based on selected postcodes
     setFilteredData(
       updatedSelectedPostcodes.length > 0
         ? data.filter((item) =>
@@ -60,18 +59,20 @@ const CharitiesAndGroups = () => {
   return (
     <div className="charities-container">
       <aside className="filter-sidebar">
-        <h2>Filter by Postcode</h2>
-        {postcodes.map((postcode) => (
-          <label key={postcode} className="filter-checkbox">
-            <input
-              type="checkbox"
-              value={postcode}
-              onChange={handleFilterChange}
-              checked={selectedPostcodes.includes(postcode)}
-            />
-            {postcode}
-          </label>
-        ))}
+        <div className="filter-card">
+          <h2>Filter by Postcode</h2>
+          {postcodes.map((postcode) => (
+            <label key={postcode} className="filter-checkbox">
+              <input
+                type="checkbox"
+                value={postcode}
+                onChange={handleFilterChange}
+                checked={selectedPostcodes.includes(postcode)}
+              />
+              {postcode}
+            </label>
+          ))}
+        </div>
       </aside>
 
       <main className="charities-list">
@@ -89,7 +90,7 @@ const CharitiesAndGroups = () => {
                     "/placeholder.jpg"
                   }
                   alt={item.title.rendered}
-                  className="card-image"
+                  className="card-thumbnail"
                 />
                 <div className="card-content">
                   <h3 className="card-title">{item.title.rendered}</h3>

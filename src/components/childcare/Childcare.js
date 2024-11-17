@@ -11,7 +11,7 @@ const Childcare = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://salford-mycity.local/wp-json/wp/v2/childcare'); // Adjust the URL as needed
+        const response = await fetch('http://salford-mycity.local/wp-json/wp/v2/childcare'); 
         const result = await response.json();
         setData(result);
       } catch (err) {
