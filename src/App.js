@@ -11,6 +11,8 @@ import CharitiesAndGroups from './components/charityGroups/CharitiesAndGroups';
 import CharityDetails from './components/charityGroups/CharityDetails';
 import Header from './components/header/Header';
 import SearchResults from './components/header/SearchResults';
+import Login from './components/authentication/Login';
+import SignUp from './components/authentication/SignUp';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/charity-groups" element={<CharitiesAndGroups />} />
         <Route path="/charities/:id" element={<CharityDetails />} />
         <Route path="/search-results" element={<SearchResults />} />
+        <Route path="/log-in" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
 
       </Routes>
     </Router>
