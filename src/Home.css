@@ -1,37 +1,53 @@
+/* Home Container */
 .home-container {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .card-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-  }
-  
-  .service-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 150px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #333;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .service-card h2 {
-    margin: 0;
-    font-size: 1.2em;
-  }
-  
+  text-align: center;
+  padding: 20px;
+  width: 70%;
+  margin: auto;
+}
+
+/* Card Container */
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Service Card */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px; /* Increased height to accommodate the icon */
+  background-color: #007bff; /* Blue background for a vibrant look */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  padding: 20px;
+}
+
+/* Hover Effect */
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Icon Styling */
+.service-icon {
+  font-size: 2em; /* Large icon size */
+  margin-bottom: 10px; /* Space between icon and text */
+}
+
+/* Heading Styling */
+.service-card h2 {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 600;
+}

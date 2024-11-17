@@ -3,13 +3,13 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto; /* Center the content */
+  margin-top: 10px;
+  width: 68%;
+  margin-left: 15%;
   background-color: #fff;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  overflow: hidden; /* Ensure no content overflows outside the rounded corners */
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  overflow: hidden; 
 }
 
 .charity-images {

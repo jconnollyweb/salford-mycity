@@ -5,44 +5,57 @@ const SearchResults = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const location = useLocation();
-  const query = new URLSearchParams(location.search).get("query");
+  const query = new URLSearchParams(useLocation().search).get("query");
 
   useEffect(() => {
-    const fetchResults = async () => {
-      try {
-        const response = await fetch(
-          `http://salford-mycity.local/wp-json/wp/v2/posts?search=${query}`
-        );
-        const data = await response.json();
-        setResults(data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchResults();
+    if (query) {
+      fetchData(query);
+    }
   }, [query]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  const fetchData = async (searchQuery) => {
+    try {
+      setLoading(true);
+      const [charitiesResponse, childcareResponse, childcareClubsResponse, localOfferResponse] = await Promise.all([
+        fetch("http://salford-mycity.local/wp-json/wp/v2/charities-community?_embed"),
+        fetch("http://salford-mycity.local/wp-json/wp/v2/childcare"),
+        fetch("http://salford-mycity.local/wp-json/wp/v2/childcare_clubs"),
+        fetch("http://salford-mycity.local/wp-json/wp/v2/local_offer")
+      ]);
+
+      const charities = await charitiesResponse.json();
+      const childcare = await childcareResponse.json();
+      const childcareClubs = await childcareClubsResponse.json();
+      const localOffer = await localOfferResponse.json();
+
+      const combinedResults = [
+        ...charities.filter((item) => item.title.rendered.toLowerCase().includes(searchQuery.toLowerCase())),
+        ...childcare.filter((item) => item.title.rendered.toLowerCase().includes(searchQuery.toLowerCase())),
+        ...childcareClubs.filter((item) => item.title.rendered.toLowerCase().includes(searchQuery.toLowerCase())),
+        ...localOffer.filter((item) => item.title.rendered.toLowerCase().includes(searchQuery.toLowerCase()))
+      ];
+
+      setResults(combinedResults);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div>
-      <h1>Search Results for "{query}"</h1>
-      {results.length > 0 ? (
-        <ul>
-          {results.map((result) => (
-            <li key={result.id}>
-              <a href={`/details/${result.id}`}>{result.title?.rendered}</a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No results found.</p>
-      )}
+    <div className="search-results-container">
+      {loading && <div>Loading...</div>}
+      {error && <div>Error: {error.message}</div>}
+      {results.length === 0 && !loading && <div>No results found.</div>}
+
+      <ul>
+        {results.map((result) => (
+          <li key={result.id}>
+            <a href={`/${result.slug}`}>{result.title.rendered}</a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

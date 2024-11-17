@@ -1,10 +1,11 @@
-/* Container styles */
+/* Header Styles */
 .header-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    margin: auto;
   }
   
   /* Top bar with logo and auth buttons */
@@ -14,6 +15,7 @@
     align-items: center;
     padding: 10px 20px;
     background-color: #f8f9fa;
+    
   }
   
   .logo-image {
@@ -42,6 +44,7 @@
   /* Navigation bar styles */
   .nav-bar {
     background-color: #343a40;
+   
   }
   
   .nav-links {
@@ -93,5 +96,38 @@
   
   .dropdown-link:hover {
     background-color: #f8f9fa;
+  }
+  
+  /* Search Bar Styles */
+  .search-container {
+    display: flex;
+    justify-content: left;
+    padding: 20px;
+    background-color: #e4e6e7;
+    margin-top: 10px;
+    
+  }
+  
+  .search-input {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 300px; /* Adjust the width as needed */
+  }
+  
+  .search-btn {
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .search-btn:hover {
+    background-color: #0056b3;
   }
   
