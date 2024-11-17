@@ -12,17 +12,14 @@ const CharityDetails = () => {
   const [image3Url, setImage3Url] = useState(null);
 
   useEffect(() => {
-    // Fetch charity details including featured media
     axios
       .get(`http://salford-mycity.local/wp-json/wp/v2/charities-community/${id}?_embed`)
       .then((response) => {
         setCharity(response.data);
         setLoading(false);
 
-        // Check if image1, image2, image3 exists and fetch their URLs if they are IDs
         const { image1, image2, image3 } = response.data.acf;
 
-        // Fetch media URLs for image1, image2, image3
         const fetchImage = (imageId, setter) => {
           if (imageId) {
             axios
@@ -47,7 +44,6 @@ const CharityDetails = () => {
   if (loading) return <div>Loading...</div>;
   if (!charity) return <div>No charity data found.</div>;
 
-  // Extracting the featured image from the _embedded object
   const featuredImageUrl = charity._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 
   return (
@@ -55,7 +51,6 @@ const CharityDetails = () => {
       <h1>{charity.title.rendered}</h1>
 
       <div className="charity-images">
-        {/* Gallery images (image1, image2, image3) */}
         <div className="image-gallery">
           {image1Url && (
             <img
@@ -80,7 +75,6 @@ const CharityDetails = () => {
           )}
         </div>
 
-        {/* Featured Image */}
         {featuredImageUrl && (
           <img
             src={featuredImageUrl}
@@ -89,9 +83,7 @@ const CharityDetails = () => {
           />
         )}
 
-        {/* Content */}
         <div className="content">
-          {/* Render Post Paragraph */}
           <div
             className="post-content"
             dangerouslySetInnerHTML={{
@@ -99,7 +91,6 @@ const CharityDetails = () => {
             }}
           />
 
-          {/* Render other ACF fields */}
           <p><strong>Address:</strong> {charity.acf.address || "Not available"}</p>
           <p><strong>Postcode:</strong> {charity.acf.postcode || "Not available"}</p>
           <p><strong>Email:</strong> {charity.acf.email || "Not available"}</p>

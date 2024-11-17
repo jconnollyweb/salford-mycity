@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import { Link, useNavigate } from "react-router-dom";
 import './Header.css';
 import logo from '../images/My-City-Salford.png';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [userData, setUserData] = useState(null); 
   const navigate = useNavigate();
+  const userToken = localStorage.getItem("userToken");
 
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -15,17 +17,69 @@ const Header = () => {
     navigate(`/search-results?query=${searchQuery}`);
   };
 
+  useEffect(() => {
+    if (userToken) {
+      const fetchUserData = async () => {
+        try {
+          const response = await fetch("http://salford-mycity.local/wp-json/wp/v2/users/me", {
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+            },
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            setUserData(data); 
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      };
+
+      fetchUserData();
+    }
+  }, [userToken]); 
+
+  const handleLogout = () => {
+    localStorage.removeItem("userToken");
+    setUserData(null); 
+    navigate("/"); 
+  };
+
   return (
     <header className="header-container">
       <div className="top-bar">
         <div className="logo">
           <img src={logo} alt="My City Salford Logo" className="logo-image" />
         </div>
+        
+        {userData ? (
+          <div className="username">
+            <p>Welcome, {userData.name}!</p> 
+          </div>
+        ) : (
+          <div className="auth-buttons">
+            <button className="sign-but">
+              <Link to="/log-in" className="login-btn">Login</Link>
+            </button>
+            <button className="sign-but">
+              <Link to="/sign-up" className="signup-btn">Sign up</Link>
+            </button>
+          </div>
+        )}
 
-        <div className="auth-buttons">
-          <button> <Link to="/log-in" className="login-btn">Login</Link></button>
-          <button> <Link to="/sign-up" className="signup-btn">Sign up</Link></button>
-        </div>
+        {userData && (
+          <div className="account-link">
+            <button className="account-btn">
+              <Link to="/account" className="account-link">My Account</Link>
+            </button>
+          </div>
+        )}
+         {userData && (
+          <button onClick={handleLogout} className="logout-btn">
+            Log Out
+          </button>
+        )}
       </div>
 
       <nav className="nav-bar">
@@ -46,7 +100,6 @@ const Header = () => {
         </ul>
       </nav>
 
-      {/* Search Bar Section */}
       <div className="search-container">
         <input
           type="text"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./ChildcareClubsList.css"; // Add this line to import external CSS
+import "./ChildcareClubsList.css"; 
 
 const ClubsList = () => {
   const [clubs, setClubs] = useState([]);

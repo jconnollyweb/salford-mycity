@@ -1,12 +1,21 @@
 .charities-container {
+  font-family: "Lato", sans-serif;
   display: flex;
   flex-direction: row;
-  max-width: 1200px;
+  width: 70%;
   margin: 20px auto;
   padding: 20px;
   box-sizing: border-box;
   background-color: #f8f9fa;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.favorite-button {
+  background-color: orange;
+  padding: 5px 20px;
+  width: 100px;
+  border: 1px solid orange;
   border-radius: 10px;
 }
 

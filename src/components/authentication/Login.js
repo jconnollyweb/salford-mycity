@@ -1,69 +1,48 @@
+
 import React, { useState } from "react";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-  const [token, setToken] = useState("");
-  const [message, setMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleLogin = async () => {
     try {
-      const response = await fetch(
-        "http://salford-mycity.local/wp-json/jwt-auth/v1/token",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
+      const response = await fetch("http://salford-mycity.local/wp-json/jwt-auth/v1/token", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
       const data = await response.json();
 
-      if (response.ok) {
-        setToken(data.token);
-        setMessage("Login successful!");
+      if (data.token) {
+        localStorage.setItem("userToken", data.token);
+        alert("Login successful!");
+        window.location.href = "/account"; 
       } else {
-        setMessage(data.message || "Error logging in.");
+        alert("Invalid login credentials.");
       }
     } catch (error) {
-      setMessage("An error occurred. Please try again.");
+      console.error("Error logging in:", error);
+      alert("Something went wrong. Please try again.");
     }
   };
 
   return (
     <div>
-      <h2>Log In</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Log In</button>
-      </form>
-      {message && <p>{message}</p>}
-      {token && <p>Your token: {token}</p>}
+      <h2>Login</h2>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };

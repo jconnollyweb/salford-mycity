@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Childcare.css'; // Import styling
+import './Childcare.css'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHandsHoldingChild, faHeadset, faCity, faUsersLine } from '@fortawesome/free-solid-svg-icons';
 
 const Childcare = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch childcare data from the API
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,12 +35,12 @@ const Childcare = () => {
         data.map((item) => (
           <div key={item.id} className="childcare-section">
             <h2>{item.title.rendered}</h2>
-            <p>{item.acf.childcare_summary}</p> {/* Render the summary */}
+            <p>{item.acf.childcare_summary}</p>
 
-            {/* Render links as cards */}
-            <div className="link-card-container">
+            <div className="link-card-container" >
               {item.acf.link_one && (
                 <Link to="/clubs-list" className="link-card">
+                   <FontAwesomeIcon icon={faUsersLine} className="link-icon" />
                   Before and After School Clubs
                 </Link>
               )}
@@ -50,6 +51,7 @@ const Childcare = () => {
                   rel="noopener noreferrer"
                   className="link-card"
                 >
+                   <FontAwesomeIcon icon={faUsersLine} className="link-icon" />
                   Childminder
                 </a>
               )}
@@ -60,6 +62,7 @@ const Childcare = () => {
                   rel="noopener noreferrer"
                   className="link-card"
                 >
+                   <FontAwesomeIcon icon={faHandsHoldingChild} className="link-icon" />
                   Day Nursery
                 </a>
               )}
@@ -70,6 +73,7 @@ const Childcare = () => {
                   rel="noopener noreferrer"
                   className="link-card"
                 >
+                   <FontAwesomeIcon icon={faCity} className="link-icon" />
                   Holiday Club
                 </a>
               )}
@@ -80,6 +84,7 @@ const Childcare = () => {
                   rel="noopener noreferrer"
                   className="link-card"
                 >
+                   <FontAwesomeIcon icon={faUsersLine} className="link-icon" />
                   Pre-School Playgroup
                 </a>
               )}
@@ -90,6 +95,7 @@ const Childcare = () => {
                   rel="noopener noreferrer"
                   className="link-card"
                 >
+                   <FontAwesomeIcon icon={faUsersLine} className="link-icon" />
                   Special Educational Needs Support
                 </a>
               )}

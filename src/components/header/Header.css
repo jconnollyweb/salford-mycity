@@ -6,6 +6,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     margin: auto;
+    font-family: "Lato", sans-serif;
   }
   
   /* Top bar with logo and auth buttons */
@@ -34,10 +35,36 @@
   .login-btn {
     background-color: #007bff;
     color: white;
+    padding: 10px 20px;
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  .sign-but{
+    background-color: white;
   }
   
   .signup-btn {
     background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid #28a745;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  .account-btn {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid green;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  .account-link {
+    text-decoration: none;
     color: white;
   }
   
@@ -86,6 +113,8 @@
   .dropdown:hover .dropdown-menu {
     display: block;
   }
+
+
   
   .dropdown-link {
     color: #343a40;
@@ -95,7 +124,7 @@
   }
   
   .dropdown-link:hover {
-    background-color: #f8f9fa;
+    background-color: #7b99b6;
   }
   
   /* Search Bar Styles */
@@ -130,4 +159,18 @@
   .search-btn:hover {
     background-color: #0056b3;
   }
+
+  .logout-btn {
+    background-color: #f44336; /* Red color for logout */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .logout-btn:hover {
+    background-color: #d32f2f;
+  }
+  
   
